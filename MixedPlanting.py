@@ -27,6 +27,6 @@ def Exec():
 		ReapSunflower.Exec()
 		change_hat(Hats.Pumpkin_Hat)
 
-#Initialize.Exec(0,0,Consts.ground_range)
+Initialize.Exec(0,0,1)
 while True:
 	Exec()
