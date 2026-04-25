@@ -1,0 +1,8 @@
+ground_range = 32
+cactus_maxsize = 10
+water_threshold = 0.3
+water_number_th = ground_range * ground_range * 4
+power_threshold = 1000
+cactus_threshold = 1000
+pumpkin_num = 2
+pumpkin_size = (ground_range // pumpkin_num) -1
