@@ -27,7 +27,7 @@ def ReapAsArea(SunfloweArea, target_num):
 		# 開始位置に移動
 		Initialize.MoveToPoint(sart_x, sart_y)
 		for i in range(x_size):
-			for j in range(y_size):
+			for j in range(y_size-1):
 				
 				if i % 2 == 0:					
 					# 偶数行は北に移動
@@ -42,10 +42,15 @@ def ReapAsArea(SunfloweArea, target_num):
 					else:
 						# 指定の花びらだけど収穫できない⇒育ち切ってない判定
 						yet_grow = True
-						break
 				# 次の位置に移動
 				move(direction_y)
 			# 行の最後まで来たら東に移動
+			if current_num >= target_num:
+				if can_harvest():
+					harvest()
+				else:
+					# 指定の花びらだけど収穫できない⇒育ち切ってない判定
+					yet_grow = True
 			move(East)				
 	# 最後まで回ったらtrue
 	return True

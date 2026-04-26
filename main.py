@@ -4,6 +4,7 @@ import ReapSunflower
 import PlantMethod
 import CarePlants
 import PlantDefs
+import Plantdef_HELLOWORLD
 #import Dinosour
 i = 0
 change_hat(Hats.Pumpkin_Hat)
@@ -11,9 +12,9 @@ Initialize.Exec(0,0,1)
 
 while True:
 
-	for i in PlantDefs.HELLO_WORLD:
+	for i in Plantdef_HELLOWORLD.HELLO_WORLD:
 		PlantMethod.PlantSomething2D(i)	
-	ReapSunflower.Exec(PlantDefs.HELLO_WORLD)
+	ReapSunflower.Exec(Plantdef_HELLOWORLD.HELLO_WORLD)
 		
 
 
