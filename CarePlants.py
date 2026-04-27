@@ -2,7 +2,6 @@ import Initialize
 import Consts
 def CarePumpkin(plantdef):
 	# 位置とサイズを取得
-
 	start_x = plantdef[0][0]
 	start_y = plantdef[0][1]
 	pumpkin_size = plantdef[1][0]
@@ -56,15 +55,80 @@ def CarePumpkin(plantdef):
 		while cared_flag:
 			cared_flag = CareUnitPumpkin()
 
-def CareUnitPumpkin() :
-
+def CareUnitPumpkin():
 	cared_flag = False
-
 	if not can_harvest():
 		cared_flag = True
-	
 	if get_entity_type() == Entities.Dead_Pumpkin or get_entity_type() == None :
 		plant(Entities.Pumpkin)
 		use_item(Items.Water)
-	
 	return cared_flag
+
+def CareCactus(plantdef):
+	
+	# 位置とサイズを取得
+	start_x = plantdef[0][0]
+	start_y = plantdef[0][1]
+	cactus_size = plantdef[1][0]
+
+	#「進む」方向の初期値は東と北
+	x_direction_go = East
+	y_direction_go = North
+
+	#「戻る」方向の初期値は西と南
+	x_direction_back = West
+	y_direction_back = South
+	
+	sorted_flag = True
+	while sorted_flag:
+		# 開始位置に移動
+		Initialize.MoveToPoint(start_x, start_y)
+		sorted_flag = False
+		# 平面でサボテンをソート
+		for i in range(cactus_size):
+			if i % 2 == 0:
+				# xが偶数の時はy軸を「進む」
+				y_direction = y_direction_go
+			else:
+				# xが奇数の時はy軸を「戻る」
+				y_direction = y_direction_back
+
+			# ソートしてY軸方向を移動
+			for j in range(cactus_size -1) :
+				sorted_flag = SortCactus(sorted_flag)
+				move(y_direction)
+			
+			# 走査してX軸方向を移動
+			sorted_flag = SortCactus(sorted_flag)
+			move(x_direction_go)
+
+# 今いる位置を基準としたサボテンのソート
+def SortCactus(sorted_flag):
+	
+	# 周囲の数値を取得
+	current_num = measure()
+
+	# 周囲の数値と比較してソート
+	if current_num != None:
+		#北は大きく、南は小さく、東は大きく、西は小さくなるようにソート
+		north_num = measure(North)
+		if north_num != None and current_num > north_num:
+			swap(North)
+			current_num = measure()
+			sorted_flag = True
+		south_num = measure(South)
+		if south_num != None and current_num < south_num:
+			swap(South)
+			current_num = measure()
+			sorted_flag = True
+		east_num = measure(East)
+		if east_num != None and current_num > east_num:
+			swap(East)
+			current_num = measure()
+			sorted_flag = True
+		west_num = measure(West)
+		if west_num != None and current_num < west_num:
+			swap(West)
+			current_num = measure()
+			sorted_flag = True
+	return sorted_flag
