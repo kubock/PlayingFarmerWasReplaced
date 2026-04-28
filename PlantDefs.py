@@ -16,5 +16,5 @@ Sunflower1 =((11,0),(5,5),Entities.Sunflower)
 
 SunflowerList = [Sunflower1]
 
-Cactus1 =((0,0),(Consts.ground_range,Consts.ground_range),Entities.Cactus)
+Cactus1 =((0,0),(10,10),Entities.Cactus)
 CactusList = [Cactus1]

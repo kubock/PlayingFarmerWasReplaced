@@ -13,9 +13,20 @@ i = 0
 change_hat(Hats.Pumpkin_Hat)
 #Initialize.Exec(0,0,1)
 
-while True:
+def PlantCuctus_Sub():
 	PlantMethod.PlantSomething2D(PlantDefs.Cactus1)
-	spawn_drone(CarePlants.CareCactus(PlantDefs.Cactus1))
+	spawn_drone(CareCuctus_Sub)
+
+def CareCuctus_Sub():
+	spawn_drone(CareCuctus_Sub)
+	CarePlants.CareCactus(PlantDefs.Cactus1)
+
+spawn_drone(PlantCuctus_Sub)
+
+#while True:
+#	PlantMethod.PlantSomething2D(PlantDefs.Cactus1)
+#	spawn_drone(CarePlants.CareCactus(PlantDefs.Cactus1))	
+#	CarePlants.CareCactus(PlantDefs.Cactus1)
 
 
 #	for i in PlantDefs.PunkinList:
