@@ -69,7 +69,8 @@ def CareCactus(plantdef):
 	# 位置とサイズを取得
 	start_x = plantdef[0][0]
 	start_y = plantdef[0][1]
-	cactus_size = plantdef[1][0]
+	cactus_size_x = plantdef[1][0]
+	cactus_size_y = plantdef[1][1]
 
 	#「進む」方向の初期値は東と北
 	x_direction_go = East
@@ -85,7 +86,7 @@ def CareCactus(plantdef):
 		Initialize.MoveToPoint(start_x, start_y)
 		sorted_flag = False
 		# 平面でサボテンをソート
-		for i in range(cactus_size):
+		for i in range(cactus_size_x):
 			if i % 2 == 0:
 				# xが偶数の時はy軸を「進む」
 				y_direction = y_direction_go
@@ -94,7 +95,7 @@ def CareCactus(plantdef):
 				y_direction = y_direction_back
 
 			# ソートしてY軸方向を移動
-			for j in range(cactus_size -1) :
+			for j in range(cactus_size_y -1) :
 				sorted_flag = SortCactus(sorted_flag)
 				move(y_direction)
 			
@@ -107,28 +108,26 @@ def SortCactus(sorted_flag):
 	
 	# 周囲の数値を取得
 	current_num = measure()
-
+	position_x = get_pos_x()
+	position_y = get_pos_y()
+	 
+	current_num = measure()		
+	north_num = measure(North)
+	east_num = measure(East)
+	
 	# 周囲の数値と比較してソート
 	if current_num != None:
-		#北は大きく、南は小さく、東は大きく、西は小さくなるようにソート
-		north_num = measure(North)
-		if north_num != None and current_num > north_num:
-			swap(North)
-			current_num = measure()
-			sorted_flag = True
-		south_num = measure(South)
-		if south_num != None and current_num < south_num:
-			swap(South)
-			current_num = measure()
-			sorted_flag = True
-		east_num = measure(East)
-		if east_num != None and current_num > east_num:
-			swap(East)
-			current_num = measure()
-			sorted_flag = True
-		west_num = measure(West)
-		if west_num != None and current_num < west_num:
-			swap(West)
-			current_num = measure()
-			sorted_flag = True
+		if position_y < Consts.ground_range - 1:
+			#北と東を大きくなるようにソート
+			if north_num != None and current_num > north_num:
+				swap(North)
+				current_num = north_num
+				sorted_flag = True
+		
+		if position_x < Consts.ground_range - 1:
+			if east_num != None and current_num > east_num:
+				swap(East)
+				current_num = east_num
+				sorted_flag = True
+		
 	return sorted_flag

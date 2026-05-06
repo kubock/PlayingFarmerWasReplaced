@@ -2,26 +2,45 @@ import Consts
 import Initialize
 import ReapSunflower
 import PlantMethod
-import CarePlants
 import PlantDefs
+import CarePlants
 import Plantdef_HELLOWORLD
+import DroneControl
 
-
-clear()
+#clear()
 #import Dinosour
 i = 0
 change_hat(Hats.Pumpkin_Hat)
 #Initialize.Exec(0,0,1)
 
-def PlantCuctus_Sub():
-	PlantMethod.PlantSomething2D(PlantDefs.Cactus1)
-	spawn_drone(CareCuctus_Sub)
+def PlantCactus():
+	spawn_drone(DroneControl.PlantCactusDrone_1)
+	spawn_drone(DroneControl.PlantCactusDrone_2)
+	spawn_drone(DroneControl.PlantCactusDrone_3)
+	spawn_drone(DroneControl.PlantCactusDrone_4)
+	spawn_drone(DroneControl.PlantCactusDrone_5)
+	wait_for(spawn_drone(DroneControl.CareCactusDrone))
 
-def CareCuctus_Sub():
-	spawn_drone(CareCuctus_Sub)
-	CarePlants.CareCactus(PlantDefs.Cactus1)
+def SunFlowerAsDrone():
+	spawn_drone(DroneControl.SunflowerDrome_1)
+	spawn_drone(DroneControl.SunflowerDrome_2)
+	spawn_drone(DroneControl.SunflowerDrome_3)
+	spawn_drone(DroneControl.SunflowerDrome_4)
+	wait_for(spawn_drone(DroneControl.SunflowerDrome_5))
+	
+	
+Initialize.MoveToPoint(0,0)
+while True:
+	spawn_drone(Initialize.WaterManage)
+	SunFlowerAsDrone()
+	
+while True:
+	if harvest():
+		harvest()
+	clear()
+	spawn_drone(Initialize.WaterManage)
+	wait_for(spawn_drone(PlantCactus))
 
-spawn_drone(PlantCuctus_Sub)
 
 #while True:
 #	PlantMethod.PlantSomething2D(PlantDefs.Cactus1)

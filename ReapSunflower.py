@@ -50,6 +50,7 @@ def ReapAsArea(SunfloweArea, target_num):
 
 def JudgeThrowOrReap(target_num):
 	current_num = measure()
+
 	if get_entity_type() != Entities.Sunflower:
 		return 'Throw'
 

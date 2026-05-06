@@ -22,11 +22,30 @@ def Exec():
 		till()
 	
 	plant(entity)	
-	
-	while num_items(Items.Power) < Consts.power_threshold:
-		ReapSunflower.Exec()
-		change_hat(Hats.Pumpkin_Hat)
+		
+def Exec_drone():
+	while True:
+		Exec()
+			
+clear()
 
-Initialize.Exec(0,0,1)
-while True:
-	Exec()
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
+spawn_drone(Exec_drone)
