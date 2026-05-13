@@ -6,4 +6,4 @@ power_threshold = 1000
 cactus_threshold = 1000
 pumpkin_num = 2
 pumpkin_size = (ground_range // pumpkin_num) -1
-Weird_Substance_num = 256
+Weird_Substance_num = 1024

@@ -1,6 +1,9 @@
 import Initialize
 import Maze
 import Consts
+import PlantMethod
+import PlantDefs
+import CarePlants
 
 
 def drone1():
@@ -119,7 +122,7 @@ def drone16():
 	plant(Entities.Bush)
 	use_item(Items.Weird_Substance,Consts.Weird_Substance_num)
 	Maze.MainLoop()
-			
+
 clear()
 spawn_drone(drone1)
 spawn_drone(drone2)

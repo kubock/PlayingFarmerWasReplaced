@@ -131,3 +131,39 @@ def SortCactus(sorted_flag):
 				sorted_flag = True
 		
 	return sorted_flag
+
+def GrowPlants(start_x, start_y, size_x, size_y, fertilizer_flag):
+	#「進む」方向の初期値は東と北
+	x_direction_go = East
+	y_direction_go = North
+
+	#「戻る」方向の初期値は西と南
+	x_direction_back = West
+	y_direction_back = South
+	
+	sorted_flag = True
+	while sorted_flag:
+		# 開始位置に移動
+		Initialize.MoveToPoint(start_x, start_y)
+		sorted_flag = False
+		# 平面でサボテンをソート
+		for i in range(size_x):
+			if i % 2 == 0:
+				# xが偶数の時はy軸を「進む」
+				y_direction = y_direction_go
+			else:
+				# xが奇数の時はy軸を「戻る」
+				y_direction = y_direction_back
+
+			# 水やりしてY軸方向を移動
+			for j in range(size_y -1) :
+				use_item(Items.Water)
+				if fertilizer_flag:
+					use_item(Items.Fertilizer)
+				move(y_direction)
+			
+			# 水やりしてX軸方向を移動
+			use_item(Items.Water)
+			if fertilizer_flag:
+				use_item(Items.Fertilizer)
+			move(x_direction_go)

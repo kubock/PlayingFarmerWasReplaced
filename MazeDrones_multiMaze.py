@@ -3,6 +3,7 @@ import Maze
 import Consts
 import PlantDefs
 import DroneControl
+import CarePlants
 
 def SunFlowerAsDrone():
 	spawn_drone(DroneControl.SunflowerDrome_1)
@@ -165,6 +166,10 @@ def drone16():
 
 	Maze.MainLoop()
 			
+
+def GrowPlantsDrone():
+	CarePlants.GrowPlants(0, 0, 8, 8, True)
+			
 clear()
 #spawn_drone(drone1)
 spawn_drone(drone2)
@@ -183,4 +188,5 @@ spawn_drone(drone14)
 spawn_drone(drone15)
 spawn_drone(drone16)
 while True:
+	spawn_drone(GrowPlantsDrone)
 	wait_for(spawn_drone(SunFlowerAsDrone))	
